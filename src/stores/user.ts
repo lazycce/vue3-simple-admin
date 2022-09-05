@@ -3,7 +3,6 @@ import { getToken, setToken } from '@/utils/auth'
 import type { LoginParams } from '@/model'
 import { login } from '@/api/login'
 
-
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
@@ -16,12 +15,8 @@ export const useUserStore = defineStore({
   getters: {
   },
   actions: {
-    async login(params: LoginParams) {
-      const res = await login({
-        username: '123',
-        password: '213',
-        code: '123'
-      })
+    async login(loginParams: LoginParams) {
+      const res = await login(loginParams)
       
       const { data } = res
       setToken(data.token)
