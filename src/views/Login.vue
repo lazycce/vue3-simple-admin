@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <el-card>
-            <h1>Simple Admin {{ loginForm.rememberMe }} </h1>
+            <h1>Simple Admin</h1>
             <div style="margin-top: 30px" >
                 <el-form :model="loginForm">
                     <el-form-item>
@@ -20,9 +20,17 @@
                 </el-form>
             </div>
             <div>
-                <el-checkbox v-model="loginForm.rememberMe" label="记住账号" size="large" />
+                <el-checkbox 
+                    v-model="loginForm.rememberMe" 
+                    label="记住账号" 
+                    size="large" 
+                />
             </div> 
-            <el-button style="margin-top: 20px" type="primary" @click="handleLogin">登 录</el-button>
+            <el-button 
+                style="margin-top: 20px" 
+                type="primary"
+                @click="handleLogin"
+            >登 录</el-button>
         </el-card>
     </div>
 </template>
@@ -32,8 +40,6 @@
     import { useUserStore } from '@/stores/user'
     import { useRouter } from 'vue-router'
     import { getCookie, setCookie, removeCookie } from '@/utils/auth'
-
-    const remeber = ref(false)
 
     const loginForm = ref({
         username: '',

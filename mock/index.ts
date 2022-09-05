@@ -14,15 +14,20 @@ export default [
     },
     {
         url: "/getUserInfo",
-        method: "post",
+        method: "get",
         response: () => {
             return {
                 code: 200,
                 message: "ok",
                 data: {
-                    user: {
-                        name: '小红'
-                    }
+                    // 姓名
+                    name: '',
+                    // 头像
+                    avatar: '',
+                    // 角色
+                    roles: ['admin'],
+                    // 权限
+                    permissions: []
                 }
             }
         }
