@@ -23,7 +23,9 @@ export const createPermission = (options?: any) => {
                                 next()
                                 Nprogress.done()
                             }).catch(e => {
-
+                                userStore.loginOut().then(res => {
+                                    next({ path: '/' })
+                                })
                             })
                         } else {
                             next()

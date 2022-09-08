@@ -16,3 +16,13 @@ export function login(data: LoginParams) {
       data
     })
 }
+
+/**
+ * 退出
+ */
+export function loginOut() {
+  return request({
+    url: '/loginOut',
+    method: 'post',
+  })
+}

@@ -31,6 +31,16 @@ export default [
                 }
             }
         }
+    },
+    {
+      url: "/loginOut",
+      method: "post",
+      response: () => {
+        return {
+          code: 200,
+          message: "ok"
+        }
+      }
     }
   ];
   

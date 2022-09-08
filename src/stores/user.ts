@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { getToken, setToken } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 import type { LoginParams } from '@/model'
-import { login } from '@/api/login'
+import { login, loginOut} from '@/api/login'
 import { getUserInfo } from '@/api/system/user'
 
 export const useUserStore = defineStore({
@@ -29,6 +29,20 @@ export const useUserStore = defineStore({
       this.avatar = avatar
       this.roles.push(...roles)
       this.permissions.push(...permissions)
+    },
+
+    loginOut() {
+      return new Promise((resolve, reject) => {
+        loginOut().then(res => {
+          this.token = ''
+          this.roles = []
+          this.permissions = []
+          removeToken()
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      }) 
     }
   }
 })
