@@ -86,4 +86,6 @@
         width: 800px;
         margin: 0 auto;
     }
+    .app-container {
+    }
 </style>
