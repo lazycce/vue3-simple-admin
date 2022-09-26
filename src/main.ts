@@ -9,6 +9,8 @@ import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import App from './App.vue'
 
+import '@/assets/styles/index.scss'
+
 // 路由
 import router from './router'
 import { createPermission } from './router/permission'

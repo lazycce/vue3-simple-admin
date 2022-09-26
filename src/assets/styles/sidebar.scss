@@ -1,0 +1,28 @@
+#app {
+    .sidebar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 200px !important;
+        z-index: 1001;
+        background-color: #282C34;
+        .scrollbar-wrapper {
+            overflow-x: hidden !important;
+        }
+    }
+
+    .hideSidebar {
+        .sidebar-container {
+          width: 64px !important;
+        }
+    
+        .main-container {
+          margin-left: 64px;
+        }
+    }
+    
+    .el-menu {
+        border: none;
+    }
+}

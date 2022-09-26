@@ -1,5 +1,6 @@
 import { getToken } from '@/utils/auth'
 import { useUserStore } from '@/stores/user'
+import { usePermissionStore } from '@/stores/permission'
 
 const whiteList = ['/login', '/register']
 
@@ -11,6 +12,7 @@ export const createPermission = (options?: any) => {
         install: (app: any) => {
             router.beforeEach((to, from, next) => {
                 const userStore = useUserStore()
+                const permissionStore = usePermissionStore()
                 // 取token
                 if (getToken()) {
                     Nprogress.start()
@@ -20,8 +22,11 @@ export const createPermission = (options?: any) => {
                     } else {
                         if (userStore.roles.length === 0) {
                             userStore.queryUserInfo().then(res => {
-                                next()
-                                Nprogress.done()
+                                permissionStore.generateRoutes().then(res => {
+                                    console.log(res)
+                                    next()
+                                    Nprogress.done()
+                                })
                             }).catch(e => {
                                 userStore.loginOut().then(res => {
                                     next({ path: '/' })

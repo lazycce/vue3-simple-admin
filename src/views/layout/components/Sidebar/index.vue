@@ -1,37 +1,70 @@
 <template>
     <div>
-        <el-menu
-            :default-active="activeIndex"
-            class="el-menu-demo"
-            background-color="#282C34"
-            text-color="#fff"
-            @select="handleSelect"
-        >
-            <el-menu-item index="1">Processing Center</el-menu-item>
-            <el-sub-menu index="2">
-            <template #title>Workspace</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
-            <el-sub-menu index="2-4">
-                <template #title>item four</template>
-                <el-menu-item index="2-4-1">item one</el-menu-item>
-                <el-menu-item index="2-4-2">item two</el-menu-item>
-                <el-menu-item index="2-4-3">item three</el-menu-item>
-            </el-sub-menu>
-            </el-sub-menu>
-            <el-menu-item index="3" disabled>Info</el-menu-item>
-            <el-menu-item index="4">Orders</el-menu-item>
-        </el-menu>
+        <div>
+            logo
+        </div>
+        <el-scrollbar wrap-class="scrollbar-wrapper">
+            <el-menu
+                default-active="2"
+                class="el-menu-vertical-demo"
+                :collapse="isCollapse"
+                background-color="#282C34"
+                text-color="#fff"
+                :collapse-transition="false"
+            >
+                <el-sub-menu index="1">
+                <template #title>
+                    <el-icon><location /></el-icon>
+                    <span>Navigator One</span>
+                </template>
+                <el-menu-item-group>
+                    <template #title><span>Group One</span></template>
+                    <el-menu-item index="1-1">item one</el-menu-item>
+                    <el-menu-item index="1-2">item two</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="Group Two">
+                    <el-menu-item index="1-3">item three</el-menu-item>
+                </el-menu-item-group>
+                <el-sub-menu index="1-4">
+                    <template #title><span>item four</span></template>
+                    <el-menu-item index="1-4-1">item one</el-menu-item>
+                </el-sub-menu>
+                </el-sub-menu>
+                <el-menu-item index="2">
+                <el-icon><icon-menu /></el-icon>
+                <template #title>Navigator Two</template>
+                </el-menu-item>
+                <el-menu-item index="3" disabled>
+                <el-icon><document /></el-icon>
+                <template #title>Navigator Three</template>
+                </el-menu-item>
+                <el-menu-item index="4">
+                <el-icon><setting /></el-icon>
+                <template #title>Navigator Four</template>
+                </el-menu-item>
+            </el-menu>
+        </el-scrollbar>
     </div>
 </template>
 
-<script setup lang="ts">
-    import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+} from '@element-plus/icons-vue'
+import { useAppStore } from '@/stores/app'
 
-    const activeIndex = ref('1')
-    const activeIndex2 = ref('1')
-    const handleSelect = (key: string, keyPath: string[]) => {
-        console.log(key, keyPath)
-    }
+const appStore = useAppStore()
+const isCollapse = computed(() => !appStore.sidebar.opened)
+
 </script>
+
+<style>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+</style>
